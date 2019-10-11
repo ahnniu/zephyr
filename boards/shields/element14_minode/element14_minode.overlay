@@ -1,0 +1,47 @@
+/*
+ * Copyright (c) 2019 Embest Tech Co., Ltd
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	minode_connectors {
+		compatible = "element14,minode-connectors";
+		#gpio-cells = <2>;
+
+    a0 {
+      label = "A0";
+      gpios = <&edge 0 0>, <&edge 1 0>;
+    };
+
+    a1 {
+      label = "A1";
+      gpios = <&edge 1 0>, <&edge 2 0>;
+    };
+
+    a2 {
+      label = "A2";
+      gpios = <&edge 2 0>, <&edge 3 0>;
+    };
+
+    d12 {
+      label = "D12";
+      gpios = <&edge 12 0>, <&edge 13 0>;
+    };
+
+    d13 {
+      label = "D12";
+      gpios = <&edge 13 0>, <&edge 14 0>;
+    };
+
+    d14 {
+      label = "D14";
+      gpios = <&edge 14 0>, <&edge 15 0>;
+    };
+
+    d15 {
+      label = "D15";
+      gpios = <&edge 15 0>, <&edge 16 0>;
+    };
+  };
+};

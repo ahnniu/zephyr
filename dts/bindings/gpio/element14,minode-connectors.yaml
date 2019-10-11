@@ -1,0 +1,20 @@
+# Copyright (c) 2018, Linaro Limited
+# SPDX-License-Identifier: Apache-2.0
+
+title: Element14 minode connector parent
+
+description: GPIO connectors parent node
+
+compatible: "element14,minode-connectors"
+
+child-binding:
+    title: GPIO connector node
+    description: GPIO connector child node
+    properties:
+       gpios:
+          type: phandle-array
+          required: true
+       label:
+          required: true
+          type: string
+          description: Human readable string describing the device (used by Zephyr for API name)
