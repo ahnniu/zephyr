@@ -20,4 +20,6 @@ source "lib/posix/Kconfig"
 
 source "lib/updatehub/Kconfig"
 
+source "lib/minode/Kconfig"
+
 endmenu

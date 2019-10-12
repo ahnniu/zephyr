@@ -1,0 +1,21 @@
+#
+# Copyright (c) 2019 Embest Tech Co., Ltd
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+config ELEMENT14_MINODE_LIB
+	bool "element14 mi:node starter kit library"
+	depends on GPIO
+	# depends on HEAP_MEM_POOL_SIZE != 0
+	help
+	  This enables element14 mi:node starter kit library support.
+
+if ELEMENT14_MINODE_LIB
+
+config ELEMENT14_MINODE_LIB_SWITCH
+	bool "Switch module"
+	help
+	  This enables switch module of element14 mi:node starter kit support.
+
+endif
