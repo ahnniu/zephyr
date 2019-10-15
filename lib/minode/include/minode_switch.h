@@ -15,18 +15,16 @@ struct minode_switch_device {
 	void *user_data;
 	minode_switch_callback_handler_t handler_on;
 	minode_switch_callback_handler_t handler_off;
-	struct minode_switch_driver_data *driver_data;
+	struct minode_switch_driver_data driver_data;
 };
 
 #define MINODE_SWITCH_DEVICE_DEFINE(_device_name, _conn_name, _user_data,       \
 					_handler_on, _handler_off)                                            \
-	static __used struct minode_switch_driver_data _device_name ## _driver_data ; \
 	static __used struct minode_switch_device _device_name = {                    \
-		.connector = # _conn_name,                                                  \
+		.connector = STRINGIFY(_conn_name),                                         \
 		.user_data = _user_data,                                                    \
 		.handler_on = _handler_on,                                                  \
-		.handler_off = _handler_off,                                                \
-		.driver_data = & _device_name ## _driver_data                               \
+		.handler_off = _handler_off                                                 \
 	}
 
 int minode_switch_init(struct minode_switch_device *dev);

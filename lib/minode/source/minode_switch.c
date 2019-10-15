@@ -8,33 +8,33 @@ int minode_switch_retrieve_status(struct minode_switch_device *dev, bool if_cach
 	u32_t val;
 	int status;
 
-	gpio_pin_read(dev->driver_data->gpio.dev, dev->driver_data->gpio.pin, &val);
+	gpio_pin_read(dev->driver_data.gpio.dev, dev->driver_data.gpio.pin, &val);
 
 	status = val ? 0: 1;
 	if (if_cache) {
-		dev->driver_data->status = status;
+		dev->driver_data.status = status;
 	}
 	return status;
 }
 
 int minode_switch_status(struct minode_switch_device *dev)
 {
-	return dev->driver_data->status;
+	return dev->driver_data.status;
 }
 
 bool minode_switch_is_on(struct minode_switch_device *dev)
 {
-	return dev->driver_data->status ? true : false;
+	return dev->driver_data.status ? true : false;
 }
 
 int minode_switch_enable_callback(struct minode_switch_device *dev)
 {
-	return gpio_pin_enable_callback(dev->driver_data->gpio.dev, dev->driver_data->gpio.pin);
+	return gpio_pin_enable_callback(dev->driver_data.gpio.dev, dev->driver_data.gpio.pin);
 }
 
 int minode_switch_disable_callback(struct minode_switch_device *dev)
 {
-	return gpio_pin_disable_callback(dev->driver_data->gpio.dev, dev->driver_data->gpio.pin);
+	return gpio_pin_disable_callback(dev->driver_data.gpio.dev, dev->driver_data.gpio.pin);
 }
 
 static void gpio_handler_switch(struct device *gpio_device, struct gpio_callback *cb,
@@ -75,25 +75,25 @@ int minode_switch_init(struct minode_switch_device *dev)
 		return -EINVAL;
 	}
 
-	dev->driver_data->gpio.dev = minode_connector_get_gpio_device(dev->connector, 0);
-	if (!dev->driver_data->gpio.dev) {
+	dev->driver_data.gpio.dev = minode_connector_get_gpio_device(dev->connector, 0);
+	if (!dev->driver_data.gpio.dev) {
 		return -ENODEV;
 	}
 
-	dev->driver_data->gpio.pin = minode_connector_get_gpio_pin(dev->connector, 0);
-	if (dev->driver_data->gpio.pin == -1) {
+	dev->driver_data.gpio.pin = minode_connector_get_gpio_pin(dev->connector, 0);
+	if (dev->driver_data.gpio.pin == -1) {
 		return -ENODEV;
 	}
 
-	gpio_pin_configure(dev->driver_data->gpio.dev, dev->driver_data->gpio.pin,
-				(GPIO_DIR_IN | GPIO_INT | GPIO_INT_EDGE | GPIO_INT_DOUBLE_EDGE));
+	gpio_pin_configure(dev->driver_data.gpio.dev, dev->driver_data.gpio.pin,
+				(GPIO_DIR_IN | GPIO_PUD_PULL_UP | GPIO_INT | GPIO_INT_EDGE | GPIO_INT_DOUBLE_EDGE));
 
 	// Init onoff status
 	minode_switch_retrieve_status(dev, true);
 
-	gpio_init_callback(&dev->driver_data->gpio.callback, gpio_handler_switch,
-				BIT(dev->driver_data->gpio.pin));
-	gpio_add_callback(dev->driver_data->gpio.dev, &dev->driver_data->gpio.callback);
+	gpio_init_callback(&dev->driver_data.gpio.callback, gpio_handler_switch,
+				BIT(dev->driver_data.gpio.pin));
+	gpio_add_callback(dev->driver_data.gpio.dev, &dev->driver_data.gpio.callback);
 
 	minode_switch_enable_callback(dev);
 
