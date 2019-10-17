@@ -1,0 +1,14 @@
+#ifndef ZEPHYR_INCLUDE_LIB_MINODE_H_
+#define ZEPHYR_INCLUDE_LIB_MINODE_H_
+
+#include <minode_connector.h>
+
+#ifdef CONFIG_ELEMENT14_MINODE_LIB_SWITCH
+#include <minode_switch.h>
+#endif
+
+#ifdef CONFIG_ELEMENT14_MINODE_LIB_LIGHT_SENSOR
+#include <minode_light_sensor.h>
+#endif
+
+#endif

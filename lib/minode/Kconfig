@@ -18,4 +18,21 @@ config ELEMENT14_MINODE_LIB_SWITCH
 	help
 	  This enables switch module of element14 mi:node starter kit support.
 
+config ELEMENT14_MINODE_LIB_LIGHT_SENSOR
+	bool "Light sensor module"
+	help
+	  This enables light sensor module of element14 mi:node starter kit support.
+
+if ELEMENT14_MINODE_LIB_LIGHT_SENSOR
+
+config ELEMENT14_MINODE_LIB_LIGHT_SAMPLINGS_COUNT
+	int "Number of ADC samplings each light level get"
+	range 1 8
+	default 3
+	help
+	  Number of ADC samplings when try to get light level. And an Average
+		will be the final value.
+
+endif
+
 endif

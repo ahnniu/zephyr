@@ -48,17 +48,17 @@
 	edge: connector {
 		compatible = "bbc,microbit-edge";
 		#gpio-cells = <2>;
-		gpio-map = <0  0 &gpio0 3  0>, /* P0, Analog in */
-				<1  0 &gpio0 2  0>, /* P1, Analog in */
-				<2  0 &gpio0 1  0>, /* P2, Analog in */
-				<3  0 &gpio0 4  0>, /* P3, Analog in, LED Col 1 */
-				<4  0 &gpio0 5  0>, /* P4, Analog in, LED Col 2 */
+		gpio-map = <0  0 &gpio0 3  4>, /* P0, Analog in AIN4 */
+				<1  0 &gpio0 2  3>, /* P1, Analog in AIN3 */
+				<2  0 &gpio0 1  2>, /* P2, Analog in AIN2 */
+				<3  0 &gpio0 4  5>, /* P3, Analog in AIN5, LED Col 1 */
+				<4  0 &gpio0 5  6>, /* P4, Analog in AIN6, LED Col 2 */
 				<5  0 &gpio0 17 0>, /* P5, Button A */
 				<6  0 &gpio0 12 0>, /* P6, LED Col 9 */
 				<7  0 &gpio0 11 0>, /* P7, LED Col 8 */
 				<8  0 &gpio0 18 0>, /* P8 */
 				<9  0 &gpio0 10 0>, /* P9, LED Col 7 */
-				<10 0 &gpio0 6  0>, /* P10, Analog in, LED Col 3 */
+				<10 0 &gpio0 6  7>, /* P10, Analog in AIN7, LED Col 3 */
 				<11 0 &gpio0 26 0>, /* P11, Button B */
 				<12 0 &gpio0 20 0>, /* P12 */
 				<13 0 &gpio0 23 0>, /* P13, SPI1 SCK */
