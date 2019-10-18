@@ -37,7 +37,7 @@ int minode_rotary_init(struct minode_rotary_device *dev)
 	analog_dev->connector = dev->connector;
 	analog_dev->user_data = dev->user_data;
 	analog_dev->on_new_sampling = rotary_on_new_sampling;
-	return minode_analog_init(analog_dev, dev->driver_data.buffer, 1, 0);
+	return minode_analog_init(analog_dev, dev->driver_data.buffer, 1, 0, 0);
 }
 
 enum minode_rotary_level minode_rotary_retrieve(struct minode_rotary_device *dev)

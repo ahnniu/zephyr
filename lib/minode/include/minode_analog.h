@@ -11,6 +11,7 @@ struct minode_analog_driver_data {
 	struct k_timer timer;
 	struct k_work work;
 	u16_t avg_adc_val;
+	u16_t ref_val;
 };
 
 struct minode_analog_device;
@@ -33,7 +34,9 @@ struct minode_analog_device {
 		.on_new_sampling = _handler_new_sampling                                    \
 	}
 
-int minode_analog_init(struct minode_analog_device *dev, u8_t *sampling_buffer, int sampling_count, int sampling_freq_hz);
+int minode_analog_init(struct minode_analog_device *dev,
+			u8_t *sampling_buffer, int sampling_count,
+			int sampling_freq_hz, u16_t sampling_reference);
 void minode_analog_start_sampling(struct minode_analog_device *dev, int period_ms);
 void minode_analog_stop_sampling(struct minode_analog_device *dev);
 u16_t minode_analog_retrieve(struct minode_analog_device *dev);

@@ -24,7 +24,9 @@ static void work_handler(struct k_work *work)
 	}
 }
 
-int minode_analog_init(struct minode_analog_device *dev, u8_t *sampling_buffer, int sampling_count, int sampling_freq_hz)
+int minode_analog_init(struct minode_analog_device *dev,
+			u8_t *sampling_buffer, int sampling_count,
+			int sampling_freq_hz, u16_t sampling_reference)
 {
 	struct device *adc_dev;
 	u8_t adc_input;
@@ -64,6 +66,7 @@ int minode_analog_init(struct minode_analog_device *dev, u8_t *sampling_buffer, 
 	}
 
 	dev->driver_data.adc_dev = adc_dev;
+	dev->driver_data.ref_val = sampling_reference;
 
 	dev->driver_data.channel.gain = ADC_GAIN_1_3;
 	dev->driver_data.channel.reference = ADC_REF_VDD_1_3;
@@ -121,6 +124,7 @@ u16_t minode_analog_retrieve(struct minode_analog_device *dev)
 	int i;
 	u32_t total_adc_val;
 	u16_t adc_val;
+	u16_t ref_val;
 	u8_t *buffer;
 	int sampling_count;
 
@@ -130,12 +134,18 @@ u16_t minode_analog_retrieve(struct minode_analog_device *dev)
 
 	buffer = dev->driver_data.sampling.buffer;
 	sampling_count = dev->driver_data.sampling_options.extra_samplings + 1;
+	ref_val = dev->driver_data.ref_val;
 
 	adc_read(dev->driver_data.adc_dev, &dev->driver_data.sampling);
 
 	total_adc_val = 0;
 	for(i = 0; i < sampling_count; i++) {
 		adc_val = ((buffer[2 * i + 1] & 0x03) << 8 | buffer[2 * i]);
+		if (adc_val > ref_val) {
+			adc_val -= ref_val;
+		} else {
+			adc_val = ref_val - adc_val;
+		}
 		total_adc_val += adc_val;
 	}
 

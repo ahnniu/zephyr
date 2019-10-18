@@ -47,9 +47,48 @@ config ELEMENT14_MINODE_LIB_ROTARY_SAMPLINGS_PERIOD_MS
 	range 100 10000
 	default 600
 	help
-	  It will read the rotary level erery this period time. If the level changed, it will emit
+	  It will read the rotary level every this period time. If the level changed, it will emit
 		an event.
 
+endif
+
+config ELEMENT14_MINODE_LIB_SOUND_SENSOR
+	bool "Sound sensor module"
+	help
+	  This enables sound sensor module of element14 mi:node starter kit support.
+
+if ELEMENT14_MINODE_LIB_SOUND_SENSOR
+
+config ELEMENT14_MINODE_LIB_SOUND_SENSOR_SAMPLINGS_PERIOD_MS
+	int "The period(in ms) of sound get"
+	range 1 10000
+	default 15
+	help
+	  It will read the sound level every this period time to determine if there
+		any noise. If any noise is detected, it will emit an event.
+
+config ELEMENT14_MINODE_LIB_SOUND_SENSOR_SAMPLINGS_COUNT
+	int "Number of ADC samplings each sound get"
+	range 1 10
+	default 3
+	help
+	  Number of ADC samplings when try to get sound level. And an Average
+		will be the final value.
+
+config ELEMENT14_MINODE_LIB_SOUND_SENSOR_NOISE_HIGHEST_FREQ_HZ
+	int "The noise highest frequency to detect"
+	range 20 20000
+	default 10000
+	help
+		Usually people can hear the voice's frequency from 20Hz to 20KHz. A noise's
+		frequency is usually lower than 5Khz.
+
+config ELEMENT14_MINODE_LIB_SOUND_SENSOR_NOISE_LOWEST_AMPLITUDE_ADC_VAL
+	int "The intensity of the noice"
+	range 0 512
+	default 80
+	help
+		What intensity of the voice can be considered as noise.
 endif
 
 endif

@@ -15,4 +15,9 @@
 #ifdef CONFIG_ELEMENT14_MINODE_LIB_ROTARY
 #include <minode_rotary.h>
 #endif
+
+#ifdef CONFIG_ELEMENT14_MINODE_LIB_SOUND_SENSOR
+#include <minode_sound_sensor.h>
+#endif
+
 #endif
