@@ -35,4 +35,21 @@ config ELEMENT14_MINODE_LIB_LIGHT_SAMPLINGS_COUNT
 
 endif
 
+config ELEMENT14_MINODE_LIB_ROTARY
+	bool "Rotary module"
+	help
+	  This enables rotary module of element14 mi:node starter kit support.
+
+if ELEMENT14_MINODE_LIB_ROTARY
+
+config ELEMENT14_MINODE_LIB_ROTARY_SAMPLINGS_PERIOD_MS
+	int "The period(in ms) of rotary level get"
+	range 100 10000
+	default 600
+	help
+	  It will read the rotary level erery this period time. If the level changed, it will emit
+		an event.
+
+endif
+
 endif
