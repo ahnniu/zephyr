@@ -136,3 +136,21 @@ u8_t minode_connector_get_adc_input(const char* conn_name, int pin_id)
 
 	return -ENODEV;
 }
+
+struct device *minode_connector_get_pwm_device(const char* conn_name, int pin_id)
+{
+	return device_get_binding("SW_PWM");
+}
+
+u32_t minode_connector_get_pwm_pin(const char* conn_name, int pin_id)
+{
+	u32_t pin;
+
+	pin = minode_connector_get_gpio_pin(conn_name, pin_id);
+
+	if (pin < 0 || pin > 31) {
+		return -ENODEV;
+	}
+
+	return 1 << pin;
+}

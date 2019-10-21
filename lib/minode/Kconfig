@@ -91,4 +91,9 @@ config ELEMENT14_MINODE_LIB_SOUND_SENSOR_NOISE_LOWEST_AMPLITUDE_ADC_VAL
 		What intensity of the voice can be considered as noise.
 endif
 
+config ELEMENT14_MINODE_LIB_DHT11
+	bool "DHT11 humidity and ambient temperature sensor module"
+	help
+	  This enables DHT11 sensor module of element14 mi:node starter kit support.
+
 endif

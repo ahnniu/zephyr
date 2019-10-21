@@ -20,4 +20,8 @@
 #include <minode_sound_sensor.h>
 #endif
 
+#ifdef CONFIG_ELEMENT14_MINODE_LIB_DHT11
+#include <minode_dht11.h>
+#endif
+
 #endif

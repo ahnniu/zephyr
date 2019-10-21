@@ -16,4 +16,7 @@ struct device *minode_connector_get_adc_device(const char* conn_name, int pin_id
 u8_t minode_connector_get_adc_input(const char* conn_name, int pin_id);
 u8_t minode_connector_allocate_adc_channel_id();
 
+struct device *minode_connector_get_pwm_device(const char* conn_name, int pin_id);
+u32_t minode_connector_get_pwm_pin(const char* conn_name, int pin_id);
+
 #endif
