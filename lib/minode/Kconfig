@@ -13,6 +13,11 @@ config ELEMENT14_MINODE_LIB
 
 if ELEMENT14_MINODE_LIB
 
+config MICROBIT_LIB_BUTTON
+	bool "micro:bit button library"
+	help
+	  This enables micro:bit button library support.
+
 config ELEMENT14_MINODE_LIB_SWITCH
 	bool "Switch module"
 	help
